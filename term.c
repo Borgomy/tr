@@ -30,3 +30,8 @@ void reset_keypress(void)
   tcsetattr(0,TCSANOW,&stored_settings);
 	return;
 }
+int handler(int none)
+{
+  fprintf(stdout,"\t\t\t\t\t\t\tloss\n");
+  exit(0);
+}

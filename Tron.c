@@ -3,6 +3,7 @@
 int main(int argc, char* argv[])
 { 
   int mode_sync = 0; // 0 - not syncing, 1 - syncing
+  signal(SIGINT, handler);
   if(argc < 4)
   {
       printf("Use: ./Tron.exe <xres> <yres> <opponent's ip> <0-nsync, 1-sync>\n");
