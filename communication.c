@@ -65,7 +65,7 @@ void control_thread_nsync(struct args_keys* args)
       usleep(1);
       sendto(sockfd, &direction, 1, 0, ptr_p2_addr, len_sockaddr);
   }
-
+  tcflush(0, TCIFLUSH);
   while( direction != 'q' && work_flag )
   {
     direction = getchar();
@@ -130,7 +130,7 @@ void control_thread_sync(struct args_keys* args)
       usleep(1);
       sendto(sockfd, &direction, 1, 0, ptr_p2_addr, len_sockaddr);
   }
-
+  tcflush(0, TCIFLUSH);
   while( direction != 'q' && work_flag )
   {
     direction = getchar();

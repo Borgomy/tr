@@ -1,18 +1,7 @@
-all: minitron.exe
+all: Tron.exe
 
 %.exe:%.c
-	@gcc $< -lncurses -lpthread -O2 -o $@
-
-withoutcur:
-	@gcc minitron.c -DWITHOUTCURSOR -lncurses -lpthread -O2 -o minitronwc.exe
-
-
-run: minitron.exe
-	@./minitron.exe
+	@gcc $< -lpthread -o $@
 
 clean:
 	@rm *.exe
-
-update:
-	@make clean
-	@make 
