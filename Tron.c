@@ -216,7 +216,7 @@ int main(int argc, char* argv[])
       }
   }
 
-  if(connect(sockfd, (struct sockaddr*)&opponent_addr, sizeof(*(struct sockaddr*)&opponent_addr)
+  if(connect(sockfd, (struct sockaddr*)&opponent_addr, sizeof(*(struct sockaddr*)&opponent_addr)))
  {  
     close(sockfd);
     munmap(ptr, map_size);
