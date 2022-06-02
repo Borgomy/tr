@@ -364,8 +364,10 @@ int main(int argc, char* argv[])
 
   if(who_lose[index_player] == 0 && who_lose[0] != who_lose[1])
     fprintf(stdout,"\t\t\tvictory!!!\n");
-  else if(game_start == 1)
-    fprintf(stdout,"\t\t\t\t\t\t\tloss\n");
+  else if(who_lose[index_player] == 1 && who_lose[0] != who_lose[1])
+    fprintf(stdout,"\t\t\t\t\t\t\tlose\n");
+else if(who_lose[0] == who_lose[1])
+    fprintf(stdout,"\t\t\t\t\t\t\tgrawn\n");
 
   close(sockfd);
   munmap(ptr, map_size);
