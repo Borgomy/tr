@@ -52,13 +52,8 @@ int main(int argc, char* argv[])
   
   int xres_area = atoi(argv[1]);
   int yres_area = atoi(argv[2]);
-#ifdef WITHOUTCURSOR
-  if(xres_area + 2 > info.xres || yres_area + 2 > info.yres 
-          || xres_area <= 10 || yres_area <= 10) //considering the boundaries 
-#else 
-  if(xres_area + 2 > info.xres || yres_area + 2 > info.yres-32
+  if(xres_area + 2 > info.xres || yres_area + 2 > info.yres
           || xres_area <= 10 || yres_area <= 10) //considering the boundaries and first line
-#endif
   {
     munmap(ptr, map_size);
     close(fb);
@@ -109,6 +104,8 @@ int main(int argc, char* argv[])
     printf("Bind error");
     return __LINE__;
   }
+
+
 
   //init threads
   pthread_t tid_control, tid_syncing;
@@ -218,6 +215,17 @@ int main(int argc, char* argv[])
         ftime(&tb);
       }
   }
+
+  if(connect(sockfd, (struct sockaddr*)&opponent_addr, sizeof(*(struct sockaddr*)&opponent_addr)
+ {  
+    close(sockfd);
+    munmap(ptr, map_size);
+    close(fb);
+    reset_keypress();
+    fprintf(stderr, "Error of connect\n");
+    return 2;
+ }
+
   start_flag = 1;
 
   // start game 
