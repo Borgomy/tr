@@ -104,7 +104,8 @@ void interaction_thread_nsync(struct args_keys* args)
   while(work_flag)
   {
     recvfrom(sockfd, &direction, 1, 0, ptr_p2_addr, &len_sockaddr);
-    if(direction == UP || direction == DOWN || direction == LEFT || direction == RIGHT)
+    if(direction == UP || direction == DOWN || direction == LEFT || direction == RIGHT
+            && copy_addr.sin_addr.s_addr == (args->ptr_p2_addr)->sin_addr.s_addr)
     {
       pthread_mutex_lock(ptr_mtx);
       *ptr_direct = direction; 
@@ -173,7 +174,8 @@ void interaction_thread_sync(struct args_keys* args)
     recvfrom(sockfd, &direction, 1, 0, ptr_p2_addr, &len_sockaddr);
     direction -= number_step % 2;
     if((direction == UP || direction == DOWN 
-                || direction == LEFT || direction == RIGHT) && need_answer)
+                || direction == LEFT || direction == RIGHT) && need_answer 
+                && copy_addr.sin_addr.s_addr == (args->ptr_p2_addr)->sin_addr.s_addr)
     {
       *ptr_direct = direction;
       need_answer = 0;
