@@ -2,6 +2,11 @@ void draw_area(uint32_t *ptr, int xres, int yres, int scr_xres)
 {
   for(int i = 0; i<xres+2; i++)
   {
+    for(int j = 1; j<=yres; j++)
+        ptr[scr_xres*j + i] = BLACK;
+  }
+  for(int i = 0; i<xres+2; i++)
+  {
       ptr[i] = WHITE;
       ptr[i+(yres+1)*scr_xres] = WHITE;
   }
@@ -14,7 +19,6 @@ void draw_area(uint32_t *ptr, int xres, int yres, int scr_xres)
 
 int draw_car(uint32_t* ptr, char direction, uint32_t color, int scr_xres)
 {
-    int was_overlap = 0;
     switch (direction)
     {
         case UP:
@@ -25,7 +29,7 @@ int draw_car(uint32_t* ptr, char direction, uint32_t color, int scr_xres)
                     if( ptr[j+i*scr_xres] == WHITE || 
                         ptr[j+i*scr_xres] == RED || 
                         ptr[j+i*scr_xres] == BLUE)
-                        was_overlap = 1;
+                        return 1;
                     ptr[j+i*scr_xres] = color;
                 }
             }
@@ -38,7 +42,7 @@ int draw_car(uint32_t* ptr, char direction, uint32_t color, int scr_xres)
                     if( ptr[j+i*scr_xres] == WHITE || 
                         ptr[j+i*scr_xres] == RED || 
                         ptr[j+i*scr_xres] == BLUE)
-                        was_overlap = 1;
+                        return 1;
                     ptr[j+i*scr_xres] = color;
                 }
             }
@@ -51,7 +55,7 @@ int draw_car(uint32_t* ptr, char direction, uint32_t color, int scr_xres)
                     if( ptr[i+j*scr_xres] == WHITE || 
                         ptr[i+j*scr_xres] == RED || 
                         ptr[i+j*scr_xres] == BLUE)
-                        was_overlap = 1;
+                        return 1;
                     ptr[i+j*scr_xres] = color;
                 }
             }
@@ -64,13 +68,13 @@ int draw_car(uint32_t* ptr, char direction, uint32_t color, int scr_xres)
                     if( ptr[i+j*scr_xres] == WHITE || 
                         ptr[i+j*scr_xres] == RED || 
                         ptr[i+j*scr_xres] == BLUE)
-                        was_overlap = 1;
+                        return 1;
                     ptr[i+j*scr_xres] = color;
                 }
             }
             break;
     }
-    return was_overlap;
+    return 0;
 }
 
 void delete_car(uint32_t* ptr, char direction, int scr_xres, uint32_t background_color)

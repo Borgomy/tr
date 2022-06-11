@@ -231,7 +231,7 @@ int main(int argc, char* argv[])
   // start game 
   ftime(&tb);
   unsigned start_m = tb.millitm;
-  uint32_t background_color = ptr_car_p2[0];
+  uint32_t background_color = BLACK;
   draw_car(ptr_car_p1, direct_p1, RED, info.xres_virtual);
   draw_car(ptr_car_p2, direct_p2, BLUE, info.xres_virtual);
   draw_area(ptr , xres_area, 

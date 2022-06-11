@@ -26,6 +26,7 @@
 #define RED 0x00FF0F3F
 #define BLUE 0x003080FF
 #define WHITE 0x00FFFFBF
+#define BLACK 0x00000000
 
 static struct termios stored_settings;
 int work_flag = 1;
